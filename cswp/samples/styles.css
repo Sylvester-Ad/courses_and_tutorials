@@ -1,0 +1,173 @@
+img {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.institution-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px;
+}
+
+.nav-links a:hover {
+    background-color: rgb(185, 185, 82);
+}
+
+.welcome-section {
+    background-image: url('logo.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.write-up {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    text-align: center;
+}
+
+.write-up a {
+    text-decoration: none;
+    color: black;
+    background-color: rgb(185, 185, 82);
+    padding: 4px 6px;
+    border-radius: 3px;
+}
+
+.write-up a:hover {
+    background-color: yellow;
+}
+
+.grid-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.grid-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid-item {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.grid-item p {
+    margin: 15px;
+    font-size: 16px;
+    color: #333;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 20px 20px;
+    margin-top: 40px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #444;
+}
+
+.footer-section {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.footer-section h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.footer-section p,
+.footer-section ul {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 14px;
+    color: #ccc;
+}

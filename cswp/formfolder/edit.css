@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    height: 100px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+}
+
+.nav-bar title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    color: rgb(232, 9, 157);
+}
+
+.welcome-section {
+    background-image: url(floridakeys.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 200vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-text {
+    background-color: rgba(0, 0, 0, 0.7);
+    font-style: italic;
+    font-size: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    padding: 20px;
+
+}
+
+.form-section {
+    background-image: url(TajMahal.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-form input {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.auth-form button {
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.auth-form button:hover {
+    background-color: #555;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+}
