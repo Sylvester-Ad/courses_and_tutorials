@@ -96,12 +96,12 @@ body.dark-theme header .navbar a:hover {
 }
 
 body.dark-theme header .icons i {
-    color: var(--light-color);
+    color: grey; /* Bright white for better visibility */
 }
 
 body.dark-theme header .icons i:hover {
     background-color: var(--green);
-    color: #fff;
+    color: #000000; /* Black for hover contrast */
 }
 
 /* Buttons */
@@ -153,6 +153,11 @@ body.dark-theme .dishes .box-container .box .stars i {
     color: var(--green);
 }
 
+body.dark-theme .dishes .box-container .box .fa-heart,
+body.dark-theme .dishes .box-container .box .fa-eye {
+    color: grey;
+}
+
 /* About Section */
 body.dark-theme .about .row .content h1 {
     color: var(--black);
@@ -188,6 +193,10 @@ body.dark-theme .menu .box-container .box .content p {
 
 body.dark-theme .menu .box-container .box .content .price {
     color: var(--green);
+}
+
+body.dark-theme .menu .box-container .box .image .fa-heart {
+    color: grey;
 }
 
 /* Review Section */
@@ -253,6 +262,11 @@ body.dark-theme .footer .credit {
 
 body.dark-theme .footer .credit span {
     color: var(--green);
+}
+
+/* Social Media Icons in Footer */
+body.dark-theme #social-icons i {
+    color: grey;
 }
 
 /* Loader */
