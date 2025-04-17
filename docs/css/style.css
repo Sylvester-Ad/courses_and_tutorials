@@ -66,6 +66,43 @@ body
     background-repeat: no-repeat;
 }
 
+/* Dark theme styles */
+body.dark-theme {
+    --green: #1abc9c;
+    --black: #ecf0f1;
+    --light-color: #bdc3c7;
+    --box-shadow: 0 .5rem 1.5rem rgba(255, 255, 255, 0.1);
+    background-color: #2c3e50;
+    color: #ecf0f1;
+}
+
+body.dark-theme header {
+    background-color: #34495e;
+}
+
+body.dark-theme .btn {
+    background-color: var(--green);
+    color: var(--black);
+}
+
+body.dark-theme .btn:hover {
+    background-color: #16a085;
+    color: #fff;
+}
+
+body.dark-theme header .logo {
+    color: var(--green);
+}
+
+body.dark-theme header .icons i {
+    color: var(--light-color);
+}
+
+body.dark-theme header .icons i:hover {
+    background-color: var(--green);
+    color: #fff;
+}
+
 header
 {
     position: fixed;
