@@ -66,7 +66,7 @@ body
     background-repeat: no-repeat;
 }
 
-/* Dark theme styles */
+/* Comprehensive Dark Theme Styles */
 body.dark-theme {
     --green: #1abc9c;
     --black: #ecf0f1;
@@ -76,10 +76,35 @@ body.dark-theme {
     color: #ecf0f1;
 }
 
+/* Header */
 body.dark-theme header {
     background-color: #34495e;
+    box-shadow: var(--box-shadow);
 }
 
+body.dark-theme header .logo {
+    color: var(--green);
+}
+
+body.dark-theme header .navbar a {
+    color: var(--light-color);
+}
+
+body.dark-theme header .navbar a:hover {
+    background-color: var(--green);
+    color: #fff;
+}
+
+body.dark-theme header .icons i {
+    color: var(--light-color);
+}
+
+body.dark-theme header .icons i:hover {
+    background-color: var(--green);
+    color: #fff;
+}
+
+/* Buttons */
 body.dark-theme .btn {
     background-color: var(--green);
     color: var(--black);
@@ -90,17 +115,149 @@ body.dark-theme .btn:hover {
     color: #fff;
 }
 
-body.dark-theme header .logo {
-    color: var(--green);
-}
-
-body.dark-theme header .icons i {
+/* Sections */
+body.dark-theme section {
+    background-color: #34495e;
     color: var(--light-color);
 }
 
-body.dark-theme header .icons i:hover {
-    background-color: var(--green);
-    color: #fff;
+body.dark-theme section:nth-child(even) {
+    background-color: #3b4a5a;
+}
+
+/* Subheadings and Headings */
+body.dark-theme .sub-heading {
+    color: var(--green);
+}
+
+body.dark-theme .heading {
+    color: var(--black);
+}
+
+/* Dishes Section */
+body.dark-theme .dishes .box-container .box {
+    background-color: #3b4a5a;
+    border: .1rem solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--box-shadow);
+}
+
+body.dark-theme .dishes .box-container .box h3 {
+    color: var(--black);
+}
+
+body.dark-theme .dishes .box-container .box span {
+    color: var(--green);
+}
+
+body.dark-theme .dishes .box-container .box .stars i {
+    color: var(--green);
+}
+
+/* About Section */
+body.dark-theme .about .row .content h1 {
+    color: var(--black);
+}
+
+body.dark-theme .about .row .content p {
+    color: var(--light-color);
+}
+
+body.dark-theme .about .row .content .icons-container .icons {
+    background-color: #3b4a5a;
+    border: .1rem solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark-theme .about .row .content .icons-container .icons i {
+    color: var(--green);
+}
+
+/* Menu Section */
+body.dark-theme .menu .box-container .box {
+    background-color: #3b4a5a;
+    border: .1rem solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--box-shadow);
+}
+
+body.dark-theme .menu .box-container .box .content h3 {
+    color: var(--black);
+}
+
+body.dark-theme .menu .box-container .box .content p {
+    color: var(--light-color);
+}
+
+body.dark-theme .menu .box-container .box .content .price {
+    color: var(--green);
+}
+
+/* Review Section */
+body.dark-theme .review .slide {
+    background-color: #3b4a5a;
+    border: .1rem solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--box-shadow);
+}
+
+body.dark-theme .review .slide .user h3 {
+    color: var(--black);
+}
+
+body.dark-theme .review .slide p {
+    color: var(--light-color);
+}
+
+/* Order Section */
+body.dark-theme .order form {
+    background-color: #3b4a5a;
+    border: .1rem solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--box-shadow);
+}
+
+body.dark-theme .order form .inputBox .input span {
+    color: var(--green);
+}
+
+body.dark-theme .order form .inputBox .input input,
+body.dark-theme .order form .inputBox .input textarea {
+    background-color: #2c3e50;
+    color: var(--light-color);
+    border: .1rem solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark-theme .order form .inputBox .input input:focus,
+body.dark-theme .order form .inputBox .input textarea:focus {
+    background-color: #34495e;
+    border-color: var(--green);
+}
+
+/* Footer Section */
+body.dark-theme section.footer {
+    background-color: #34495e;
+    color: var(--light-color);
+}
+
+body.dark-theme .footer .box-container .box h3 {
+    color: var(--black);
+}
+
+body.dark-theme .footer .box-container .box a {
+    color: var(--light-color);
+}
+
+body.dark-theme .footer .box-container .box a:hover {
+    color: var(--green);
+}
+
+body.dark-theme .footer .credit {
+    color: var(--black);
+}
+
+body.dark-theme .footer .credit span {
+    color: var(--green);
+}
+
+/* Loader */
+body.dark-theme .loader-container {
+    background-color: #34495e;
 }
 
 header
