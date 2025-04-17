@@ -82,5 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(loader, 3000);
     }
     window.onload = fadeOut;
-    
+
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+        document.body.classList.toggle('dark-theme');
+    });
 });
