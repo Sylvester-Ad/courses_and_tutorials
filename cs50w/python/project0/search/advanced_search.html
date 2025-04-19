@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <header id="advanced-header">
+        <div class="links">
+
+            <div class="logo">
+                <a href="index.html">Google</a>
+            </div>
+
+            <div class="icons">
+                <a href="#"><i class="fas fa-flask"></i></a>
+                <a href="#"><i class="fas fa-th"></i></a>
+                <a href="#"><i class="fas fa-user-circle"></i></a>
+            </div>
+
+        </div>
+    </header>
+
+    <main id="advanced-main">
+        <section id="header-text">
+            <h1>Advanced Search</h1>
+        </section>
+
+        <section class="general">
+
+            <div class="text">
+                <h3>Find pages with...</h3>
+            </div>
+
+            <div class="form-container">
+
+                <form action="https://www.google.com/search" method="get">
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="all_these_words">all these words</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" id="all_these_words" name="as_q">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="this_exact_word_or_phrase">this exact word or phrase</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" id="this_exact_word_or_phrase" name="as_epq">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="any_of_these_words">any of these words</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" id="any_of_these_words" name="as_oq">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="none_of_these_words">none of these words</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" id="none_of_these_words" name="as_eq">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="numbers_between">numbers between</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" id="numbers_between" name="as_nlo" placeholder="Low">
+                            <input type="text" id="numbers_between_high" name="as_nhi" placeholder="High">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <input type="submit" value="Advanced Search">
+                    </div>
+
+                </form>
+
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
