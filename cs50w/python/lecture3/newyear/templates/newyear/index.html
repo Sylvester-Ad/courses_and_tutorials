@@ -1,0 +1,25 @@
+{% extends 'newyear/layout.html' %}
+{% comment %} Template inherits from layout.html {% endcomment %}
+{% load static %}
+
+{% block title %}
+    Is it New Year yet?
+{% endblock title %}
+
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'newyear/styles.css' %}">
+{% endblock stylesheet%}
+
+{% block body %}
+    
+    <h1>
+        {% if new_year %}
+            Yes, it is New Year!
+        {% else %}
+            No, it is not New Year yet.
+        {% endif %}
+    </h1>
+    
+{% endblock body %}
+

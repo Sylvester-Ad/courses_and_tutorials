@@ -1,0 +1,16 @@
+body {
+    background-color: #282c34;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+h1 {
+    margin: 40vh;
+    color: aquamarine;
+    text-shadow: 2px 2px 4px rgba(196, 22, 22, 0.5);
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

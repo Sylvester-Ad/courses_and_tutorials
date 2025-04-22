@@ -1,0 +1,31 @@
+{% extends 'tasks/layout.html' %}
+{% comment %} Template inherits from layout.html {% endcomment %}
+{% load static %}
+
+{% block title %}
+    To-Do List
+{% endblock title %}
+
+{% comment %} {% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'tasks/styles.css' %}">
+{% endblock stylesheet%} {% endcomment %}
+
+{% block body %}
+
+    <h1>My Tasks</h1>
+
+    {% if tasks %}
+        <ul>
+            {% for task in tasks %}
+                <li>{{ task }}</li>
+            {% empty %}
+                <li>No Current Tasks</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tasks found.</p>
+    {% endif %}
+    <a href="{% url 'tasks:add' %}">Add New Tasks</a>
+
+{% endblock body %}
+
