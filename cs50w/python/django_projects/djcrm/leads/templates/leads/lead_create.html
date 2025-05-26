@@ -1,0 +1,17 @@
+{% extends "leads/layout.html" %}
+
+{% block title %}
+Create New Lead
+{% endblock title %}
+
+{% block body %}
+    <a href="{% url 'leads:index' %}">Back to Leads</a>
+    <hr>
+
+    <p><strong>Create a new lead</strong></p>
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+{% endblock body %}

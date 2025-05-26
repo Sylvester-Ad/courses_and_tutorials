@@ -1,0 +1,18 @@
+{% extends "leads/layout.html" %}
+
+{% block title %}
+    Hello
+{% endblock title %}
+
+{% block body %}
+    <h2>Hello. How's it going?</h2>
+    <p>Here are your leads:</p>
+    <ul>
+        {% for lead in leads %}
+            <li><a href="{% url 'leads:lead_detail' lead.id %}" class="lead">{{ lead }}</a></li>
+        {% empty %}
+            <p>No leads found.</p>
+        {% endfor %}
+    </ul>
+    <p><a href="{% url 'leads:lead_create' %}">Create a new lead</a></p>
+{% endblock body %}
