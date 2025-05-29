@@ -1,15 +1,21 @@
-{% extends "leads/layout.html" %}
+{% extends "layout.html" %}
 
 {% block title %}
     Lead Detail
 {% endblock title %}
 
 {% block body %}
+    <a href="{% url 'leads:index' %}">Back to Leads</a>
+    <hr>
+
     <h2>Lead Detail</h2>
     <p>Here are the details for lead: {{ lead.first_name }}</p>
     <strong>Full Name:</strong> {{ lead.first_name }} {{ lead.last_name }} <br>
     <strong>Age:</strong> {{ lead.age }} <br>
     <strong>The agent responsible for this lead is:</strong> {{ lead.agent }} <br>
+    <hr>
 
-    <a href="{% url 'leads:index' %}">Back to Leads</a>
+    <a href="{% url 'leads:lead_update' lead.id%}">Update Lead</a>
+    <a href="{% url 'leads:lead_delete' lead.id%}">Delete Lead</a>
+    
 {% endblock body %}

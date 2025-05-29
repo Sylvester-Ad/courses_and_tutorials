@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Update Lead Data
+{% endblock title %}
+
+{% block body %}
+    <a href="{% url 'leads:index' %}">Go back to leads</a>
+    <hr>
+    <h1>Update lead: {{ lead.first_name }} {{ lead.last_name }}</h1>
+    <form action="#" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">  
+    </form>
+{% endblock body %}
