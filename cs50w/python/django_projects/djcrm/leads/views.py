@@ -7,6 +7,8 @@ from django.urls import reverse
 
 # My views.
 
+def landing_page(request):
+    return render(request, "landing.html")
 
 def index(request):
     leads = Lead.objects.all()
@@ -32,11 +34,38 @@ def lead_create(request):
         # Validate form
         if form.is_valid():
             form.save()
-            print("Lead created successfully in database")
             return HttpResponseRedirect(reverse("leads:index"))
     return render(request, "leads/lead_create.html", {
         "form": form
     })
+
+def lead_update(request, pk):
+
+    # Set form instance
+    lead = Lead.objects.get(id=pk)
+    form = LeadModelForm(instance=lead)
+
+    # Update data of lead instance
+    if request.method == "POST":
+        form = LeadModelForm(request.POST, instance=lead)
+
+        if form.is_valid():
+            form.save()
+
+            return HttpResponseRedirect(reverse("leads:index"))
+
+    return render(request, "leads/lead_update.html", {
+        "lead": lead,
+        "form": form,
+    })
+
+def lead_delete(request, pk):
+    lead = Lead.objects.get(id=pk)
+    lead.delete()
+    return HttpResponseRedirect(reverse("leads:index"))
+    
+    
+# end def
 
 
 
