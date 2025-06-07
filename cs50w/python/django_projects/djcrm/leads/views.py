@@ -1,11 +1,73 @@
 from django.shortcuts import render
+from django.core.mail import send_mail
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Lead, Agent
-from .forms import LeadForm, LeadModelForm
+from django.views import generic
+from .forms import LeadForm, LeadModelForm, CustomUserCreationForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from agents.mixins import OrganizerAndLoginRequiredMixin
 
 
-# My views.
+
+# My class-based views.
+class SignUpView(generic.CreateView):
+    template_name = "registration/signup.html"
+    form_class = CustomUserCreationForm
+
+    def get_success_url(self):
+        return reverse("login")
+
+class LandingPageView(generic.TemplateView):
+    template_name = "landing.html"  
+
+class LeadIndexView(LoginRequiredMixin, generic.ListView):
+    template_name = "leads/index.html"
+    context_object_name = "leads"
+    queryset = Lead.objects.all()
+
+
+class LeadDetailView(LoginRequiredMixin, generic.DetailView):
+    template_name = "leads/lead_detail.html"
+    queryset = Lead.objects.all()
+    context_object_name = "lead"
+
+class LeadCreateView(OrganizerAndLoginRequiredMixin, generic.CreateView):
+    template_name = "leads/lead_create.html"
+    form_class = LeadModelForm
+
+    def form_valid(self, form):
+        send_mail(
+            subject="A new lead has been created",
+            message="Go to the admin panel to view the lead.",
+            from_email="test@test.com",
+            recipient_list=["test2@test.com"]
+        )
+        
+        return super(LeadCreateView, self).form_valid(form)
+    
+    def get_success_url(self):
+        return reverse("leads:index")
+    
+class LeadUpdateView(OrganizerAndLoginRequiredMixin, generic.UpdateView):
+    template_name = "leads/lead_update.html"
+    form_class = LeadModelForm
+    queryset = Lead.objects.all()
+    context_object_name = "lead"
+
+    def get_success_url(self):
+        return reverse("leads:index")
+
+class LeadDeleteView(OrganizerAndLoginRequiredMixin, generic.DeleteView):
+    template_name = "leads/lead_delete.html"
+    queryset = Lead.objects.all()
+    context_object_name = "lead"
+
+    def get_success_url(self):
+        return reverse("leads:index")
+
+
+# My function-based views.
 
 def landing_page(request):
     return render(request, "landing.html")
