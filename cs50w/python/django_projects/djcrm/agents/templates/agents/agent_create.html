@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create New Agent
+{% endblock title %}
+
+{% block body %}
+    <a href="{% url 'agents:agent_list' %}">Back to Agents</a>
+    <hr>
+
+    <p><strong>Create a new agent</strong></p>
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+{% endblock body %}
