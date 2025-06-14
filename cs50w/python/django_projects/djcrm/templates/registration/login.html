@@ -10,7 +10,9 @@
         <div class="container mx-auto px-4 py-8">
             <h2 class="text-2xl font-bold mb-6">Login</h2>
             {{ form.as_p }}
-            <button type="submit" class="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">Login</button>
+            <button type="submit" class="bg-indigo-500 text-white px-4 py-2 my-3 rounded hover:bg-indigo-600">Login</button>
+            <hr>
+            <a href="{% url 'reset_password' %}">Forgot password?</a>
         </div>
     </form>
 {% endblock body %}
