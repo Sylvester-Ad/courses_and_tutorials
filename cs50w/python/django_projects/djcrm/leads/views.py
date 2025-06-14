@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.core.mail import send_mail
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Lead, Agent
+from .models import Lead, Agent, Category
 from django.views import generic
-from .forms import LeadForm, LeadModelForm, CustomUserCreationForm
+from .forms import LeadForm, LeadModelForm, CustomUserCreationForm, AssignAgentForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from agents.mixins import OrganizerAndLoginRequiredMixin
@@ -24,19 +25,68 @@ class LandingPageView(generic.TemplateView):
 class LeadIndexView(LoginRequiredMixin, generic.ListView):
     template_name = "leads/index.html"
     context_object_name = "leads"
-    queryset = Lead.objects.all()
 
+    def get_queryset(self):
+        request_user = self.request.user
+        
+        # If the user is an organizer, show all leads in their organization
+        if request_user.is_organizer:
+            queryset = Lead.objects.filter(
+                organization=request_user.userprofile,
+                agent__isnull=False  # Only show leads that have an agent assigned
+            )
+
+        # Filter leads by the agent associated with the logged-in user
+        else:
+            queryset = Lead.objects.filter(organization=request_user.agent.organization)
+            queryset = queryset.filter(
+                agent__user=request_user,
+                agent__isnull=False  # Only show leads that have an agent assigned)
+            )
+            
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        request_user = self.request.user
+
+        # Filter for unassigned leads
+        if request_user.is_organizer:
+            queryset = Lead.objects.filter(
+                organization=request_user.userprofile, 
+                agent__isnull=True
+            )
+            context.update({
+                "unassigned_leads": queryset,
+            })
+
+        return context
+        
 
 class LeadDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = "leads/lead_detail.html"
-    queryset = Lead.objects.all()
     context_object_name = "lead"
+
+    def get_queryset(self):
+        request_user = self.request.user
+        
+        # If the user is an organizer, show all leads in their organization
+        if request_user.is_organizer:
+            queryset = Lead.objects.filter(organization=request_user.userprofile)
+
+        # Filter leads by the agent associated with the logged-in user
+        else:
+            queryset = Lead.objects.filter(organization=request_user.agent.organization)
+            queryset = queryset.filter(agent__user=request_user)
+            
+        return queryset
 
 class LeadCreateView(OrganizerAndLoginRequiredMixin, generic.CreateView):
     template_name = "leads/lead_create.html"
     form_class = LeadModelForm
 
     def form_valid(self, form):
+        messages.success(self.request, "Lead created successfully!")
         send_mail(
             subject="A new lead has been created",
             message="Go to the admin panel to view the lead.",
@@ -44,7 +94,7 @@ class LeadCreateView(OrganizerAndLoginRequiredMixin, generic.CreateView):
             recipient_list=["test2@test.com"]
         )
         
-        return super(LeadCreateView, self).form_valid(form)
+        return super().form_valid(form)
     
     def get_success_url(self):
         return reverse("leads:index")
@@ -52,19 +102,80 @@ class LeadCreateView(OrganizerAndLoginRequiredMixin, generic.CreateView):
 class LeadUpdateView(OrganizerAndLoginRequiredMixin, generic.UpdateView):
     template_name = "leads/lead_update.html"
     form_class = LeadModelForm
-    queryset = Lead.objects.all()
     context_object_name = "lead"
+
+    def get_queryset(self):
+        request_user = self.request.user
+        
+        # Show all leads in their organization
+        queryset = Lead.objects.filter(organization=request_user.userprofile)
+            
+        return queryset
+    
+    def form_valid(self, form):
+        messages.success(self.request, "Lead updated successfully!")
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse("leads:index")
 
 class LeadDeleteView(OrganizerAndLoginRequiredMixin, generic.DeleteView):
     template_name = "leads/lead_delete.html"
-    queryset = Lead.objects.all()
     context_object_name = "lead"
+
+    def get_queryset(self):
+        request_user = self.request.user
+        
+        # Initial queryset of all leads in their organization
+        queryset = Lead.objects.filter(organization=request_user.userprofile)
+            
+        return queryset
+    
+    def form_valid(self, form):
+        messages.success(self.request, "Lead successfully deleted!")
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse("leads:index")
+    
+class AssignAgentView(OrganizerAndLoginRequiredMixin, generic.FormView):
+    template_name = "leads/assign_agent.html"
+    form_class = AssignAgentForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["request"] = self.request
+
+        return kwargs
+    
+    def form_valid(self, form):
+        agent = form.cleaned_data["agent"]
+        lead = Lead.objects.get(id=self.kwargs["pk"])
+        lead.agent = agent
+        lead.save()
+        messages.success(self.request, f"You have successfully assigned agent {agent.user.username} to {lead.first_name}")
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("leads:index")
+
+class CategoryListView(LoginRequiredMixin, generic.ListView):
+    template_name = "leads/category_list.html"
+    context_object_name = "categories"
+
+    def get_queryset(self):
+        user = self.request.user
+
+        # Return queryset of leads under user's organization
+        if user.is_organizer:
+            queryset = Category.objects.filter(
+                organization=user.userprofile,
+            )
+        else:
+            queryset = Category.objects.filter(
+                organization=user.agent.organization
+            )
+        return queryset
 
 
 # My function-based views.
