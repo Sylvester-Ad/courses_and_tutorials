@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UsernameField
 from django.contrib.auth import get_user_model
-from .models import Lead
+from .models import Lead, Agent
 
 User = get_user_model()
 
@@ -30,4 +30,16 @@ class CustomUserCreationForm(UserCreationForm):
         field_classes = {
             "username": UsernameField,
         }
+
+class AssignAgentForm(forms.Form):
+    agent = forms.ModelChoiceField(Agent.objects.none())
+
+    def __init__(self, *args, **kwargs):
+        request = kwargs.pop("request")
+        print(kwargs)
+        super().__init__(*args, **kwargs)
+
+        # Filter to only show leads under the user's organization
+        agents = Agent.objects.filter(organization=request.user.userprofile)
+        self.fields["agent"].queryset = agents
         
