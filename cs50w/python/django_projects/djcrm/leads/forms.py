@@ -13,6 +13,9 @@ class LeadModelForm(forms.ModelForm):
             'last_name',
             'age',
             'agent',
+            'description',
+            'phone_number',
+            'email',
         )
         
 
@@ -40,6 +43,12 @@ class AssignAgentForm(forms.Form):
         super().__init__(*args, **kwargs)
 
         # Filter to only show leads under the user's organization
-        agents = Agent.objects.filter(organization=request.user.userprofile)
+        agents = Agent.objects.filter(organization=request.user.profile)
         self.fields["agent"].queryset = agents
         
+class LeadCategoryUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Lead
+        fields = (
+            'category',
+        )
