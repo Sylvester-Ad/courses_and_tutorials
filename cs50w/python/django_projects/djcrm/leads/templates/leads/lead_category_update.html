@@ -18,14 +18,14 @@
                         {{ lead.first_name }} {{ lead.last_name }} 
                     </h1>
                     <div class="flex mb-4">
-                        <a href="{% url 'leads:lead_detail' lead.id %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
+                        <a href="{% url "leads:lead_detail" lead.id %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
                             Overview
                         </a>
-                        <a href="{% url "leads:lead_category_update" lead.id %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
-                            Category
-                        </a>
                         <a class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
-                           Update Details
+                           Category
+                        </a>
+                        <a href="{% url "leads:lead_update" lead.id %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
+                            Update Details
                         </a>
                     </div>
                    <form action="#" method="post">
