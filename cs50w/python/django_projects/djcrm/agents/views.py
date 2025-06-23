@@ -21,7 +21,7 @@ class AgentListView(OrganizerAndLoginRequiredMixin, generic.ListView):
     context_object_name = "agents"
 
     def get_queryset(self):
-        request_user_organization = self.request.user.userprofile
+        request_user_organization = self.request.user.profile
         return self.model.objects.filter(organization=request_user_organization)
     
 
@@ -48,7 +48,7 @@ class AgentCreateView(OrganizerAndLoginRequiredMixin, generic.CreateView):
         # Create agent instance and associate it with the user's organization
         Agent.objects.create(
             user=user,
-            organization=self.request.user.userprofile
+            organization=self.request.user.profile
         )
 
         # Send mail to the new agent 
@@ -74,7 +74,7 @@ class AgentDetailView(OrganizerAndLoginRequiredMixin, generic.DetailView):
     context_object_name = "agent"
 
     def get_queryset(self):
-        request_user_organization = self.request.user.userprofile
+        request_user_organization = self.request.user.profile
         return self.model.objects.filter(organization=request_user_organization)
 
 class AgentUpdateView(OrganizerAndLoginRequiredMixin, generic.UpdateView):
@@ -82,14 +82,13 @@ class AgentUpdateView(OrganizerAndLoginRequiredMixin, generic.UpdateView):
     View to update an existing agent.
     Requires the user to be logged in.
     """
-    model = Agent
     template_name = "agents/agent_update.html"
     context_object_name = "agent"
     form_class = AgentModelForm
 
     def get_queryset(self):
-        request_user_organization = self.request.user.userprofile
-        return self.model.objects.filter(organization=request_user_organization)
+        user = self.request.user
+        return user.profile.agents.all()
 
     def form_valid(self, form):
         messages.success(self.request, "Agent update successful!")
@@ -109,7 +108,7 @@ class AgentDeleteView(OrganizerAndLoginRequiredMixin, generic.DeleteView):
     context_object_name = "agent"
 
     def get_queryset(self):
-        request_user_organization = self.request.user.userprofile
+        request_user_organization = self.request.user.profile
         return self.model.objects.filter(organization=request_user_organization)
     
     
