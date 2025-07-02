@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Projects</title>
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .youtube-button-container {
+            margin-bottom: 4em;
+        }
+
+        .rock-paper-scissors-container {
+            margin-bottom: 4em;
+        }
+
+        .subscribe-button {
+            padding: .7rem;
+            background-color: black;
+            color: #fff;
+            font-size: medium;
+            border-radius: 5rem;
+            border: 1px solid black;
+        }
+
+        .subscribe-button:hover {
+            cursor: pointer;
+        }
+
+        .is-subscribed {
+            background-color: rgb(240, 240, 240);
+            color: rgb(0, 0, 0);
+        }
+
+        .cost-input {
+            padding: .8em;
+        }
+
+        .calculate-button {
+            padding: .9em;
+            background-color: green;
+            color: #fff;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="youtube-button-container">
+        <p>YouTube Subscribe Button</p>
+        <button class="js-subscribe-button subscribe-button">Subscribe</button>
+    </div>
+
+    <div class="rock-paper-scissors-container">
+        <p>Rock Paper Scissors</p>
+        <a href="/rock-paper-scissors.html">Click here</a>
+    </div>
+
+    <div class="shipping-container">
+        <p>Amazon Shipping Calculator</p>
+        <p>Orders under $40 = +$10 Shipping</p> 
+        <p>Orders over $40 = FREE Shipping</p>
+        <input type="text" name="cost" class="js-cost-input cost-input" placeholder="Cost of order" onkeydown="handleCostKeydown(event);">
+        <button class="js-calculate-button calculate-button">Calculate</button>
+
+        <p class="order-result"></p>
+    </div>
+
+
+    <script>
+        // Implement subscribe button functionality
+        const subscribeElement = document.querySelector(".js-subscribe-button");
+        subscribeElement.onclick = () => {
+            if (subscribeElement.innerHTML === "Subscribe") {
+                subscribeElement.innerHTML = "Subscribed";
+                subscribeElement.classList.add("is-subscribed");
+            }
+            else {
+                subscribeElement.innerHTML = "Subscribe";
+                subscribeElement.classList.remove("is-subscribed");
+            }
+        };
+
+        function handleCostKeydown(event) {
+            if (event.key == "Enter") {
+                calculateTotal();
+            }
+        }
+
+        // Show total order
+        function calculateTotal() {
+            const inputElement = document.querySelector(".js-cost-input");
+            const resultParagraph = document.querySelector(".order-result");
+
+            let cost = Number(inputElement.value);
+
+            if (cost < 40) {
+                cost = cost + 10;
+            }
+
+            resultParagraph.innerHTML = `Total Cost: $${cost}`;
+        }
+
+        // Calculate total on clicking Calculate button and when user clicks Enter in input
+        const calculateElement = document.querySelector(".js-calculate-button");
+        calculateElement.onclick = calculateTotal;
+        
+
+    </script>
+</body>
+
+</html>

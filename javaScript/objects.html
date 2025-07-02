@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects</title>
+</head>
+
+<body>
+    <script>
+        const product1 = {
+            name: "socks",
+            price: 1090
+        };
+
+        const product2 = product1;
+        product1.name = "bedsheets";
+        product1.location = "Atlanta";
+        console.log(product2);
+        console.log(product1);
+
+        // Destructuring
+        const { name, price } = product1;
+        console.log(name, price);
+
+    </script>
+</body>
+
+</html>
