@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+    <p>Rock Paper Scissors</p>
+    
+    <button value="rock" class="game">Rock</button>
+    <button value="paper" class="game">Paper</button>
+    <button value="scissors" class="game">Scissors</button>
+    <div id="result"></div>
+    <div id="scores"></div>
+    <button id="reset-score">Reset Score</button>
+
+    
+    <script>
+        const score = JSON.parse(localStorage.getItem("score")) || {
+            wins: 0,
+            losses: 0,
+            ties: 0
+        };
+        updateScoreElement();
+
+        
+        
+        // Define function to pick computer's guess
+        function pickComputerGuess() {
+            let computerGuess = "";
+            
+            // Randomly assign value(rock, paper, scissors) to computer
+            const randomNumber = Math.floor(Math.random() * 3);
+            console.log(randomNumber);
+            if (randomNumber === 0) {
+                computerGuess = "rock";
+            } 
+            else if (randomNumber === 1) {
+                computerGuess = "paper";
+            } 
+            else {
+                computerGuess = "scissors";
+            }
+            return computerGuess;
+        }
+        
+        // Define game function
+        function playGame(userGuess) {
+            const computerGuess = pickComputerGuess();
+            
+            // console.log("User's guess: " + userGuess);
+            // console.log("Computer's guess: " + computerGuess);
+            
+            let result;
+
+            // Assign result based on choice
+            if (userGuess === computerGuess) {
+                result = "Tie!";
+
+                // Update score
+                score.ties += 1;
+            }
+            else if (
+                (userGuess === "rock" && computerGuess === "paper") ||
+                (userGuess === "paper" && computerGuess === "scissors") ||
+                (userGuess === "scissors" && computerGuess === "rock") 
+            ) {
+                result = `You lose. Computer chose ${computerGuess}`;
+
+                // Update score
+                score.losses += 1;
+            } else {
+                result = `You win! Computer chose ${computerGuess}`;
+                
+                // Update score
+                score.wins += 1;
+            }
+            
+            // Store score in localStorage
+            console.log("Before playGame stores in local storage: " + score);
+            localStorage.setItem("score", JSON.stringify(score));
+            console.log("After playGame stores in local storage: " + score);
+
+            // Update score element
+            updateScoreElement();
+            
+            // Show result
+            document.getElementById("result").innerHTML = `<p>${result}</p>`;
+            // console.log(result);
+
+            
+        }
+
+        // Select all game buttons
+        const button = document.querySelectorAll(".game");
+
+        // Play game when button is clicked
+        button.forEach(btn => {
+            btn.addEventListener("click", () => playGame(btn.value));
+        });
+
+        // Reset score upon clicking reset score button
+        const resetScoreButton = document.getElementById("reset-score");
+        resetScoreButton.onclick = () => {
+            // Reset all scores
+            score.losses = 0;
+            score.wins = 0;
+            score.ties = 0;
+
+            // Update score in UI
+            updateScoreElement();
+
+            // Remove item from localStorage
+            localStorage.removeItem("score");
+            console.log("After reset: " + score);
+        };
+
+        function updateScoreElement() {
+            // Display scores
+            document.getElementById("scores").innerHTML = 
+            `<p>Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}</p>`;
+        }
+    </script>
+</body>
+
+</html>
