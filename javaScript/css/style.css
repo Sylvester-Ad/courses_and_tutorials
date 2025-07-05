@@ -1,0 +1,140 @@
+body {
+    color: aliceblue;
+    background-repeat: no-repeat;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    animation: slideshow 20s infinite;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+}
+
+@keyframes slideshow {
+    0% {
+        background-image: url("/images/bg1-image.jpeg");
+    }
+
+    33% {
+        background-image: url("/images/bg2-image.jpeg");
+    }
+
+    66% {
+        background-image: url("/images/bg3-image.jpeg");
+    }
+
+    100% {
+        background-image: url("/images/bg4-image.jpeg");
+    }
+}
+
+main {
+    align-items: center;
+    margin: 2rem;
+    background-color: rgb(18, 47, 49);
+    border: 1px solid wheat;
+    box-shadow: .1rem .5rem 2rem rgb(146, 185, 150);
+    padding: 2rem;
+}
+
+.title {
+    font-size: 2rem;
+}
+
+.buttons {
+    display: flex;
+    gap: .4em;
+}
+
+.img {
+    height: 9rem;
+    width: 9rem;
+    background-color: transparent;
+    animation: fadeIn 3s ease-in-out;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.btn {
+    transform: scale(0.95);
+}
+
+.btn:hover {
+    box-shadow: 0 0 10px rgba(0, 200, 255, 0.7);
+    transition: all 0.3s ease;
+}
+
+#result {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: .5rem;
+    animation: fadeIn 3s ease-in-out;
+}
+
+.result-win {
+    color: #4CAF50;
+}
+
+.result-lose {
+    color: #F44336;
+}
+
+.result-tie {
+    color: #9E9E9E;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.move-icon {
+    width: 4rem;
+    height: 4rem;
+}
+
+.spinner {
+    border: 4px solid #ccc;
+    border-top: 4px solid #00c8ff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 10px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+#thinking-text {
+    font-size: 1.1rem;
+    text-align: center;
+    color: #ccc;
+}
+
+@media screen and (min-width: 1024px) {
+    main {
+        margin-left: 5rem;
+        margin-right: 5rem;
+    }
+}
