@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div>${taskValue.date}</div>
                 <button class="delete-btn js-delete-btn">Delete</button>
             `;
+            // Add class for styling    
             taskItem.classList.add("todo-grid");
 
             // Add event listener for delete button
