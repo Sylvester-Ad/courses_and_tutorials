@@ -1,10 +1,9 @@
 body {
     color: aliceblue;
-    background-repeat: no-repeat;
+    background-position: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     animation: slideshow 20s infinite;
-    background-size: cover;
-    background-position: center;
+    background-size: fill;
     transition: background-image 1s ease-in-out;
 }
 
@@ -28,37 +27,60 @@ body {
 
 main {
     align-items: center;
-    margin: 2rem;
-    background-color: rgb(18, 47, 49);
-    border: 1px solid wheat;
-    box-shadow: .1rem .5rem 2rem rgb(146, 185, 150);
-    padding: 2rem;
+    margin: 2rem auto;
+    background-color: rgba(18, 47, 49, 0.95);
+    max-width: 800px;
+    border: 1px solid #e0e0e0;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    padding: 2.5rem 2rem;
 }
 
 .title {
-    font-size: 2rem;
+    font-size: 2.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 8px #0003;
 }
 
 .buttons {
     display: flex;
-    gap: .4em;
+    gap: 1.2em;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .img {
     height: 9rem;
     width: 9rem;
-    background-color: transparent;
-    animation: fadeIn 3s ease-in-out;
+    border-radius: 50%;
+    border: 2px solid #00c8ff;
+    background: #fff2;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 12px #00c8ff33;
+}
+
+.img:hover {
+    transform: scale(1.08) rotate(-5deg);
+    box-shadow: 0 4px 24px #00c8ff55;
 }
 
 .button-container {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    align-items: center;
+    gap: 0.7em;
 }
 
 .btn {
     transform: scale(0.95);
+    font-size: 1.1rem;
+    padding: 0.7em 1.5em;
+    border-radius: 2em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: box-shadow 0.2s, background 0.2s;
 }
 
 .btn:hover {
@@ -132,9 +154,59 @@ main {
     color: #ccc;
 }
 
-@media screen and (min-width: 1024px) {
+#results-area {
+    margin-bottom: 1rem;
+}
+
+#scores {
+    margin-top: 1.2rem;
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    background: #2228;
+    border-radius: 0.7em;
+    padding: 0.5em 1em;
+    display: inline-block;
+}
+
+#reset-score {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    padding: 0.5em 1.2em;
+    border-radius: 1.5em;
+    background: linear-gradient(90deg, #ff6b6b 60%, #48c6ef 100%);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 2px 8px #ff6b6b33;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+#reset-score:hover {
+    background: linear-gradient(90deg, #48c6ef 0%, #ff6b6b 100%);
+    box-shadow: 0 4px 16px #ff6b6b55;
+}
+
+
+
+@media screen and (max-width: 761px) {
     main {
-        margin-left: 5rem;
-        margin-right: 5rem;
+        padding: 1.2rem 1.2rem;
+        max-width: 98vw;
+        margin: 1.5rem auto;
+    }
+
+    .title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .buttons {
+        margin-bottom: 1.5rem;
+        gap: 1.5em;
+    }
+
+    .img {
+        height: 5.5rem;
+        width: 5.5rem;
     }
 }
