@@ -13,19 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Define function to pick computer's guess
     function pickComputerGuess() {
         let computerGuess = "";
-
+        const choices = ["rock", "paper", "scissors"];
+        
         // Randomly assign value(rock, paper, scissors) to computer
-        const randomNumber = Math.floor(Math.random() * 3);
-        console.log(randomNumber);
-        if (randomNumber === 0) {
-            computerGuess = "rock";
-        }
-        else if (randomNumber === 1) {
-            computerGuess = "paper";
-        }
-        else {
-            computerGuess = "scissors";
-        }
+        const randomNumber = Math.floor(Math.random() * choices.length);
+        computerGuess = choices[randomNumber];
         return computerGuess;
     }
 
@@ -129,4 +121,24 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("scores").innerHTML =
             `<p>Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}</p>`;
     }
+
+    let autoPlayInterval = null;
+    const autoPlayBtn = document.querySelector(".js-auto-play-btn");
+
+    autoPlayBtn.onclick = function () {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+            autoPlayBtn.classList.remove("active");
+            autoPlayBtn.textContent = "Auto Play";
+        } else {
+            autoPlayBtn.classList.add("active");
+            autoPlayBtn.textContent = "Stop Auto Play";
+            autoPlayInterval = setInterval(() => {
+                const choices = ["rock", "paper", "scissors"];
+                const randomChoice = choices[Math.floor(Math.random() * choices.length)];
+                playGame(randomChoice);
+            }, 1500); // Play every 1.5 seconds
+        }
+    };
 })

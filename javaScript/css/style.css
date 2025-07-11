@@ -186,7 +186,24 @@ main {
     box-shadow: 0 4px 16px #ff6b6b55;
 }
 
+#auto-play-btn {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    padding: 0.5em 1.2em;
+    border-radius: 1.5em;
+    background: linear-gradient(90deg, #48c6ef 60%, #6c63ff 100%);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 2px 8px #48c6ef33;
+    transition: background 0.2s, box-shadow 0.2s;
+    margin-left: 1em;
+}
 
+#auto-play-btn:hover, #auto-play-btn.active {
+    background: linear-gradient(90deg, #6c63ff 0%, #48c6ef 100%);
+    box-shadow: 0 4px 16px #48c6ef55;
+}
 
 @media screen and (max-width: 761px) {
     main {
