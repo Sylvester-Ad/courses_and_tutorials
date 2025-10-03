@@ -4,17 +4,29 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Functions</title>
+    <title>Functions, loops, and arrays</title>
 </head>
 
 <body>
+
+
     <script>
+        const myArray = [1, 5, 3, 6, 6, 9, 29];
+        console.log(myArray);
         function greet(name) {
             console.log(`Hello, ${name}.`);
             console.log("How are you doing?");
         }
 
         greet("Sylvester");
+
+        const function1 = function (name="Sylvester") {
+            console.log(`Hello, ${name}.`);
+            console.log("How are you doing?");
+        };
+        function1("Daniel");
+
+        setTimeout(function1, 5000);
     </script>
 </body>
 
